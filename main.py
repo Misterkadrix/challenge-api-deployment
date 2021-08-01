@@ -1,0 +1,6 @@
+from preprocessing.cleaning_data import preprocess
+from predict.prediction import multiple_linear_regression_features_selected
+
+
+
+multiple_linear_regression_features_selected()
