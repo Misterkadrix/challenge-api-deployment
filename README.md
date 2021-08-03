@@ -1,2 +1,2 @@
 # challenge-api-deployment
-Learning how to deplay and API 
+Learning how to deply and API 
