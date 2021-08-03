@@ -32,16 +32,16 @@ def multiple_regression_selected_features(ds):
 
     # Split the dataset
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    multiple_linear_regression = LinearRegression()
-    multiple_linear_regression.fit(X_train, y_train)
+    lr = LinearRegression()
+    lr.fit(X_train, y_train)
 
     #Saving the model (Serialization and Deserialization)
     import joblib
-    joblib.dump(multiple_linear_regression,'model.pkl')
+    joblib.dump(lr,'model.pkl')
     ['model.pkl']
 
     #Load the model that I saved
-    multiple_linear_regression = joblib.load('model.pkl')
+    lr = joblib.load('model.pkl')
 
     #Saving the data columns from training
     model_columns = list(X_train.columns)
@@ -49,7 +49,7 @@ def multiple_regression_selected_features(ds):
     print('Models columns dumped')
 
 
-    y_pred_mlr = multiple_linear_regression.predict(X_test)
+    y_pred_mlr = lr.predict(X_test)
 
     # Actual value and the predicted value
     mlr_diff = pd.DataFrame({'Actual value': y_test, 'Predicted value': y_pred_mlr})
@@ -66,7 +66,7 @@ def multiple_regression_selected_features(ds):
     meanSqErr = metrics.mean_squared_error(y_test, y_pred_mlr)
     rootMeanSqErr = np.sqrt(metrics.mean_squared_error(y_test, y_pred_mlr))
 
-    return ('Multiple Linear Regression, R squared Score: {:.2f}'.format(multiple_linear_regression.score(X, y) * 100))
+    return ('Multiple Linear Regression, R squared Score: {:.2f}'.format(lr.score(X, y) * 100))
 
 
 multiple_linear_regression_features_selected = multiple_regression_selected_features(ds)
